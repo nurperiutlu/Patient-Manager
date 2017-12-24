@@ -8,9 +8,14 @@ script:
 before_install:
   - cd patientmanager
   
-  deploy:
-    provider: pages
-    skip_cleanup: true
-    github_token: $GITHUB_TOKEN # Set in travis-ci.org dashboard
-    on:
-      branch: master
+  before_deploy:
+  - "mvn -DskipTests package"
+  - export FOO=$(ls target/foo-version-*.jar)
+
+deploy:
+  provider: releases
+  api_key:
+    secure: yep
+  file: "${FOO}"
+  
+ 
