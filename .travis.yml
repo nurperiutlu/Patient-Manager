@@ -6,10 +6,8 @@ script:
   mvn clean verify
 
 before_install:
-[
-   cd patientmanager]
- 
-
+   "cd patientmanager"
+  
 deploy:
   provider: releases
   api_key: "GITHUB OAUTH TOKEN"
