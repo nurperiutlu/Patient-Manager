@@ -15,21 +15,6 @@ pipeline {
                     }
                 }
 
-                stage ('Build') 
-                {
-                    steps 
-                    {
-                        bat 'mvn verify' 
-                    }
-                    
-                }
-                stage ('Test')
-                {
-                            steps
-                            {
-                                        bat 'mvn test'
-                            }
-                }
                
             }
 }
