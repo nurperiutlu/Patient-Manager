@@ -1,28 +1,33 @@
 
 pipeline {
-    agent any
-    tools {
-        maven 'maven_3_5_0'
-    }
-    stages {
-        stage ('Initialize') {
-            steps {
-                sh '''
-                    echo "PATH = ${PATH}"
-                    echo "M2_HOME = ${M2_HOME}"
-                '''
+            agent any
+            tools 
+            {
+                maven 'maven_3_5_0'
             }
-        }
+            stages 
+            {
+                stage ('Initialize') 
+                {
+                    steps 
+                    {
+                        git "https://github.com/nurperiutlu/Patient-Manager.git"
+                    }
+                }
 
-        stage ('Build') {
-            steps {
-                sh 'mvn -Dmaven.test.failure.ignore=true install' 
-            }
-            post {
-                success {
-                    junit 'target/surefire-reports/**/*.xml' 
+                stage ('Build') 
+                {
+                    steps 
+                    {
+                        bat 'mvn verify' 
+                    }
+                    post 
+                    {
+                        success 
+                        {
+                            junit 'target/surefire-reports/**/*.xml' 
+                        }
+                    }
                 }
             }
-        }
-    }
 }
