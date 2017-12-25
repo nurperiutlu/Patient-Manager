@@ -21,13 +21,22 @@ pipeline {
                     {
                         bat 'mvn verify' 
                     }
-                    post 
-                    {
-                        success 
-                        {
-                            junit 'target/surefire-reports/**/*.xml' 
-                        }
-                    }
+                    
                 }
+                stage ('Test')
+                {
+                            steps
+                            {
+                                        bat 'mvn test'
+                            }
+                }
+                stage ('Deploymnet')
+                {
+                    steps
+                        {
+                            bat 'mvn deploy'
+                        }
+                }
+               
             }
 }
