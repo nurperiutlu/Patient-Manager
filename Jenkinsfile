@@ -14,7 +14,22 @@ pipeline {
                         git "https://github.com/nurperiutlu/Patient-Manager.git"
                     }
                 }
-
+                 
+                stage ('Build') 
+                {
+                    steps 
+                    {
+                        bat 'mvn verify' 
+                    }
+                    
+                }
+                stage ('Test')
+                {
+                            steps
+                            {
+                                        bat 'mvn test'
+                            }
+                }
                
             }
 }
