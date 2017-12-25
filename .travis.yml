@@ -6,11 +6,9 @@ script:
   mvn clean verify
 
 before_install:
-  - cd patientmanager
-  
-  before_deploy:
-  - "mvn -DskipTests package"
-  - export FOO=$(ls target/foo-version-*.jar)
+[
+   cd patientmanager]
+ 
 
 deploy:
   provider: releases
